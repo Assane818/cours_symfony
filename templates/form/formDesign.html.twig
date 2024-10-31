@@ -1,0 +1,17 @@
+{# templates/form/formDesign.html.twig #}
+
+{% block form_widget_simple %}
+    {% set type = type|default('text') %}
+    <input type="{{ type }}" {{ block('widget_attributes') }} value="{{ value }}" class="form-input mt-1 block w-full text-transparent"/>
+{% endblock %}
+
+{% block form_row %}
+    <div>
+        <div class="flex items-center justify-center">
+            {{ form_widget(form) }}            
+        </div>
+    </div>
+{% endblock %}
+
+
+

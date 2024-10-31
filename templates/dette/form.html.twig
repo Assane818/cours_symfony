@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div class="flex justify-center items-center w-4/5 h-screen">
+    <div class="flex flex-col sm:rounded-lg items-end w-9/12 bg-gray-100 p-5 ml-28 mt-12 shadow-lg"
+        style="max-height: 75vh; overflow-y: auto; border: 2px solid #e2e8f0">
+
+        <!-- Titre du form en haut du cadre -->
+        <div class="w-full bg-gray-200 rounded-lg p-4 shadow-md mb-4">
+            <h2 class="text-xl font-semibold text-gray-800 text-center">Ajouter une Dette</h2>
+        </div>
+
+        <!-- Formulaire ajout client -->
+        <div class="w-full">
+            <div id="formDette">
+                {{ form_start(formDette) }}
+
+                {{ form_row(formDette.montant, {
+                'attr': {
+                'class': 'block w-full rounded-full bg-violet-100 text-xl border-2 border-purple-500 p-4 placeholder-purple-400 focus:text-violet-950 focus:border-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 ',
+                'placeholder': "Montant",
+                }
+                }) }}
+                <div class="text-red-700 mt-2 mb-4 ml-5 font-serif">
+                    {{ form_errors(formDette.montant) }}
+                </div>
+
+                {{ form_row(formDette.client, {
+                'attr': {
+                'class': 'block w-full rounded-full bg-violet-100 text-xl border-2 border-purple-500 p-4 placeholder-purple-400 focus:text-violet-950 focus:border-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 mb-3',
+                'placeholder': "Téléphone",
+                }
+                }) }}
+                {{ form_errors(formDette.client) }}
+
+
+            </div>
+            <div>
+                {{ form_widget(formDette, {
+                'attr': {
+                'class': 'flex items-center justify-center mt-4 block w-full bg-indigo-600 hover:bg-indigo-700
+                text-white font-bold py-2 px-4 rounded transition duration-300',
+                }
+                }) }}
+            </div>
+
+            {{ form_end(formDette) }} {# Fin du formulaire #}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

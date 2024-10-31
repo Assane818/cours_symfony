@@ -1,0 +1,145 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}z
+
+<div class="flex justify-center items-center w-4/5 h-screen">
+    <div class="flex flex-col sm:rounded-lg items-end w-9/12 bg-gray-100 p-5 ml-28 mt-12 shadow-lg"
+        style="max-height: 75vh; overflow-y: auto; border: 2px solid #e2e8f0">
+
+        <!-- Titre du form en haut du cadre -->
+        <div class="w-full bg-gray-200 rounded-lg p-4 shadow-md mb-4">
+            <h2 class="text-xl font-semibold text-gray-800 text-center">Ajouter un Client</h2>
+        </div>
+
+        <!-- Formulaire ajout client -->
+        <div class="w-full">
+            <div id="formClient">
+                {{ form_start(formClient) }}
+                {{ form_row(formClient.username, {
+                'attr': {
+                'class': 'block w-full rounded-full bg-violet-100 text-xl border-2 border-purple-500 p-4 placeholder-purple-400 focus:text-violet-950 focus:border-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500',
+                'placeholder': "Nom d'Utilisateur",
+                }
+                }) }}
+                <div class="text-red-700 mt-2 mb-2 ml-5 font-serif">
+                    {{ form_errors(formClient.username) }}
+                </div>
+                
+
+                {{ form_row(formClient.telephone, {
+                'attr': {
+                'class': 'block w-full rounded-full bg-violet-100 text-xl border-2 border-purple-500 p-4 placeholder-purple-400 focus:text-violet-950 focus:border-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500',
+                'placeholder': "Téléphone",
+                }
+                }) }}
+                <div class="text-red-700 mt-2 mb-2 ml-5 font-serif">
+                    {{ form_errors(formClient.telephone) }}
+                </div>
+
+                {{ form_row(formClient.address, {
+                'attr': {
+                'class': 'block w-full rounded-full bg-violet-100 text-xl border-2 border-purple-500 p-4 placeholder-purple-400 focus:text-violet-950 focus:border-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500',
+                'placeholder': "Adresse",
+                }
+                }) }}
+                <div class="text-red-700 mt-2 mb-2 ml-5 font-serif">
+                    {{ form_errors(formClient.address) }}
+                </div>
+
+            </div>
+            <!-- Formulaire ajout user -->
+            <div id="formUser" class="mt-10 hidden">
+                <div class="w-full bg-gray-200 rounded-lg p-4 shadow-md mb-4">
+                    <h2 class="text-xl font-semibold text-gray-800 text-center">Ajouter un Utilisateur</h2>
+                </div>
+                {{ form_row(formClient.users.nom, {
+                'attr': {
+                'class': 'block w-full rounded-full bg-violet-100 text-xl border-2 border-purple-500 p-4 placeholder-purple-400 focus:text-violet-950 focus:border-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500',
+                'placeholder': "Nom",
+                }
+                }) }}
+                <div class="text-red-700 mt-2 mb-2 ml-5 font-serif">
+                    {% if errorsUser is defined %}
+                    {% for error in errorsUser %}
+                    {% if error.propertyPath == 'nom' %} {{ error.getMessage() }} {% endif %}
+                    {% endfor %}
+                    {% endif %}
+                </div>
+
+                {{ form_row(formClient.users.prenom, {
+                'attr': {
+                'class': 'block w-full rounded-full bg-violet-100 text-xl border-2 border-purple-500 p-4 placeholder-purple-400 focus:text-violet-950 focus:border-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500',
+                'placeholder': "Prénom",
+                }
+                }) }}
+                <div class="text-red-700 mt-2 mb-2 ml-5 font-serif">
+                    {% if errorsUser is defined %}
+                    {% for error in errorsUser %}
+                    {% if error.propertyPath == 'prenom' %} {{ error.getMessage() }} {% endif %}
+                    {% endfor %}
+                    {% endif %}
+                </div>
+
+                {{ form_row(formClient.users.login, {
+                'attr': {
+                'class': 'block w-full rounded-full bg-violet-100 text-xl border-2 border-purple-500 p-4 placeholder-purple-400 focus:text-violet-950 focus:border-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500',
+                'placeholder': "Adresse e-mail",
+                }
+                }) }}
+                <div class="text-red-700 mt-2 mb-2 ml-5 font-serif">
+                    {% if errorsUser is defined %}
+                    {% for error in errorsUser %}
+                    {% if error.propertyPath == 'login' %} {{ error.getMessage() }} {% endif %}
+                    {% endfor %}
+                    {% endif %}
+                </div>
+
+                {{ form_row(formClient.users.password, {
+                'attr': {
+                'class': 'block w-full rounded-full bg-violet-100 text-xl border-2 border-purple-500 p-4 placeholder-purple-400 focus:text-violet-950 focus:border-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500',
+                'placeholder': "Mot de passe",
+                }
+                }) }}
+                <div class="text-red-700 mt-2 mb-2 ml-5 font-serif">
+                    {% if errorsUser is defined %}
+                    {% for error in errorsUser %}
+                    {% if error.propertyPath == 'password' %} {{ error.getMessage() }} {% endif %}
+                    {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Ajout d'une toggle switch -->
+            <div class="mt-2 overflow-hidden">
+                <label class="inline-flex items-center cursor-pointer">
+                    <input type="checkbox" value="on" class="sr-only peer hidden" id="toggleSwitch" name="toggleSwitch">
+                    <div
+                        class="relative w-14 h-7 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-green-300 dark:peer-focus:ring-green-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:- peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[4px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all dark:border-gray-600 peer-checked:bg-green-600">
+                    </div>
+                    <span class="ms-3 text-sm font-medium dark:text-gray-900">Créer un Utilisateur 🤵🏾‍♂️</span>
+                </label>
+            </div>
+
+            <div>
+                {{ form_widget(formClient, {
+                'attr': {
+                'class': 'flex items-center justify-center mt-4 block w-full bg-indigo-600 hover:bg-indigo-700
+                text-white font-bold py-2 px-4 rounded transition duration-300',
+                }
+                }) }}
+            </div>
+
+            {{ form_end(formClient) }} {# Fin du formulaire #}
+        </div>
+    </div>
+</div>
+
+
+
+
+
+{% endblock %}
+
+{% block javascripts %}
+<script src="{{ asset('controllers/formClient.js') }}"></script>
+{% endblock %}
